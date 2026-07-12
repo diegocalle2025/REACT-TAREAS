@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import './App.css'
+import TaskList from "./TaskList";
 
 function App() {
 
@@ -51,15 +52,9 @@ function eliminarTarea(id) {
 
 }
 
-function editarTarea(id) {
+function editarTarea(id, nuevoTexto) {
 
   console.log("Editar tarea:", id);
-
-  const nuevoTexto = "Tarea editada";
-
-    if (nuevoTexto === null || nuevoTexto.trim() === "") {
-     return;
-    }
 
   const nuevasTareas = tareas.map(function(tarea) {
 
@@ -161,86 +156,13 @@ return (
 
       <p>Texto actual: {nuevaTarea}</p>
 
-      <ul>
 
-{tareas.map((tarea) => (
-
-  <li
-  key={tarea.id}
-  onClick={() => toggleTask(tarea.id)}
-  className={tarea.completed ? "completed" : ""}
-  >
-
-  <>
-  {tarea.completed ? "✓ " : "• "}
-
-    {editandoId === tarea.id ? (
-
-      <input
-        type="text"
-        value={textoEditado}
-        onChange={(event) =>
-          setTextoEditado(event.target.value)
-        }
-      />
-
-  ) : (
-
-  tarea.text
-
-  )}
-
-  {editandoId === tarea.id ? (
-
-  <button
-    onClick={(event) => {
-      event.stopPropagation();
-      const nuevasTareas = tareas.map(function(t) {
-        if (t.id === tarea.id) {
-          return {
-            ...t,
-            text: textoEditado
-          };
-        }
-
-        return t;
-
-      });
-
-  setTareas(nuevasTareas);
-
-  setEditandoId(null);
-
- }}
-  >
-    Guardar
-  </button>
-
-) : (
-
-  <button
-    onClick={(event) => {
-      event.stopPropagation();
-      setEditandoId(tarea.id);
-      setTextoEditado(tarea.text);
-    }}
-  >
-    Editar
-  </button>
- )}
-
-  <button
-    onClick={(event) => {
-      event.stopPropagation();
-      eliminarTarea(tarea.id);
- }}
-  >
-    Eliminar
-  </button>
-    </>
-   </li>
-  ))}
- </ul>
+ <TaskList
+  tareas={tareas}
+  toggleTask={toggleTask}
+  eliminarTarea={eliminarTarea}
+  editarTarea={editarTarea}
+/>
 
  <h2>Usuarios API</h2>
 
