@@ -1,6 +1,11 @@
 import { useState, useEffect } from 'react'
 import './App.css'
 import TaskList from "./TaskList";
+import {  Routes,  Route } from "react-router-dom";
+import Home from "./pages/Home";
+import Tareas from "./pages/Tareas";
+import { Link } from "react-router-dom";
+import Usuarios from "./pages/Usuarios";
 
 function App() {
 
@@ -139,16 +144,63 @@ async function cargarUsuarios() {
 
 return (
 
-    <div>
+<div>
 
-      <h1>Lista de Tareas</h1>
+  <nav>
+
+        <Link to="/">
+          Inicio
+        </Link>
+
+        {" | "}
+
+        <Link to="/tareas">
+            Tareas
+        </Link>
+
+        {" | "}
+        <Link to="/usuarios">
+            Usuarios
+        </Link>
+
+  </nav>
+
+  <Routes>
+
+  <Route
+          path="/"
+            element={<Home />}
+  />
+
+  <Route
+          path="/tareas"
+            element={
+  <Tareas
+            tareas={tareas}
+            nuevaTarea={nuevaTarea}
+            setNuevaTarea={setNuevaTarea}
+            agregarTarea={agregarTarea}
+            
+  />
+  }
+  />
+
+  <Route
+          path="/usuarios"
+            element={<Usuarios />}
+        />
+
+  </Routes>
+
+    
+  <h1>Lista de Tareas</h1>
 
       <input
         type="text"
         placeholder="Escribe una tarea"
         value={nuevaTarea}
         onChange={(event) => setNuevaTarea(event.target.value)}
-      />
+  />
 
       <button onClick={agregarTarea}>
         Agregar
