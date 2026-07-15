@@ -1,10 +1,30 @@
-function Usuarios() {
+function Usuarios(props) {
 
   return (
 
-    <h1>Página de Usuarios</h1>
+  <div>
 
-  );
+    <h1>Usuarios API</h1>
+
+    <ul>
+
+      {props.usuarios.map(function(usuario) {
+
+        return (
+
+          <li key={usuario.id}>
+            {usuario.name}
+          </li>
+
+        );
+
+      })}
+
+    </ul>
+
+  </div>
+
+);
 
 }
 

@@ -81,8 +81,6 @@ function editarTarea(id, nuevoTexto) {
 }
 
   const [nuevaTarea, setNuevaTarea] = useState("");
-  const [editandoId, setEditandoId] = useState(null);
-  const [textoEditado, setTextoEditado] = useState("");
   const [usuarios, setUsuarios] = useState([]);
   useEffect(() => {
   localStorage.setItem(
@@ -176,60 +174,29 @@ return (
           path="/tareas"
             element={
   <Tareas
-            tareas={tareas}
-            nuevaTarea={nuevaTarea}
-            setNuevaTarea={setNuevaTarea}
-            agregarTarea={agregarTarea}
-            
-  />
-  }
-  />
-
-  <Route
-          path="/usuarios"
-            element={<Usuarios />}
-        />
-
-  </Routes>
-
-    
-  <h1>Lista de Tareas</h1>
-
-      <input
-        type="text"
-        placeholder="Escribe una tarea"
-        value={nuevaTarea}
-        onChange={(event) => setNuevaTarea(event.target.value)}
-  />
-
-      <button onClick={agregarTarea}>
-        Agregar
-      </button>
-
-      <p>Texto actual: {nuevaTarea}</p>
-
-
- <TaskList
   tareas={tareas}
+  nuevaTarea={nuevaTarea}
+  setNuevaTarea={setNuevaTarea}
+  agregarTarea={agregarTarea}
   toggleTask={toggleTask}
   eliminarTarea={eliminarTarea}
   editarTarea={editarTarea}
 />
+  }
+  />
 
- <h2>Usuarios API</h2>
+  <Route
+  path="/usuarios"
+  element={
+    <Usuarios
+      usuarios={usuarios}
+    />
+  }
+/>
 
-<ul>
-  {usuarios.map(function(usuario) {
+  </Routes>
 
-    return (
-      <li key={usuario.id}>
-        {usuario.name}
-      </li>
-    );
-
-  })}
-</ul>
-
+  
 </div>
   )
 }

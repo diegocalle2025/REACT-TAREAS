@@ -1,3 +1,4 @@
+import TaskList from "../TaskList";
 function Tareas(props) {
 
   return (
@@ -28,6 +29,13 @@ function Tareas(props) {
 >
   Agregar
 </button>
+
+<TaskList
+  tareas={props.tareas}
+  toggleTask={props.toggleTask}
+  eliminarTarea={props.eliminarTarea}
+  editarTarea={props.editarTarea}
+/>
 
   </div>
 
