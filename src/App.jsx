@@ -81,7 +81,7 @@ function editarTarea(id, nuevoTexto) {
 }
 
   const [nuevaTarea, setNuevaTarea] = useState("");
-  const [usuarios, setUsuarios] = useState([]);
+  
   useEffect(() => {
   localStorage.setItem(
     "tareas",
@@ -89,13 +89,7 @@ function editarTarea(id, nuevoTexto) {
   );
   }, [tareas]);
 
-  useEffect(() => {
-  cargarUsuarios();
-  }, 
-  []);
-
-
-
+  
 function agregarTarea() {     
 
   if (nuevaTarea.trim() === "") {
@@ -114,29 +108,6 @@ function agregarTarea() {
 ]);
 
   setNuevaTarea("");
-
-}
-
-async function cargarUsuarios() {
-
-  try {
-
-    const response = await fetch(
-      "https://jsonplaceholder.typicode.com/users"
-    );
-
-    const data = await response.json();
-
-    setUsuarios(data);
-
-  } catch (error) {
-
-    console.error(
-      "Error al cargar usuarios:",
-      error
-    );
-
-  }
 
 }
 
@@ -187,11 +158,7 @@ return (
 
   <Route
   path="/usuarios"
-  element={
-    <Usuarios
-      usuarios={usuarios}
-    />
-  }
+  element={<Usuarios />}
 />
 
   </Routes>
