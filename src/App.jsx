@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import './App.css'
-import TaskList from "./TaskList";
+import TaskList from "./components/TaskList";
 import {  Routes,  Route } from "react-router-dom";
 import Home from "./pages/Home";
 import Tareas from "./pages/Tareas";

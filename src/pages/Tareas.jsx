@@ -1,4 +1,4 @@
-import TaskList from "../TaskList";
+import TaskList from "../components/TaskList";
 function Tareas(props) {
 
   return (

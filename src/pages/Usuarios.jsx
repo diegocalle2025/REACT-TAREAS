@@ -1,4 +1,8 @@
 import { useState, useEffect } from "react";
+import api from "../services/api";
+import UsuarioItem from "../components/UsuarioItem";
+
+
 
 function Usuarios(props) {
   const [usuarios, setUsuarios] = useState([]);
@@ -6,17 +10,22 @@ function Usuarios(props) {
   const [editandoId, setEditandoId] = useState(null);
   const [nombreEditado, setNombreEditado] = useState("");
 
-    async function cargarUsuarios() {
+  async function cargarUsuarios() {
 
   try {
 
-    const response = await fetch(
-      "https://jsonplaceholder.typicode.com/users"
-    );
+    const response = await api.get(
+  "/usuarios"
+  );
 
-    const data = await response.json();
+  console.log(
+  "Datos recibidos:",
+  response.data
+);
 
-    setUsuarios(data);
+    console.log(response);
+
+    setUsuarios(response.data);
 
   } catch (error) {
 
@@ -35,6 +44,7 @@ useEffect(() => {
 
 }, []);
 
+
 async function crearUsuario() {
 
   if (nombre.trim() === "") {
@@ -43,29 +53,27 @@ async function crearUsuario() {
 
   try {
 
-    const response = await fetch(
-      "https://jsonplaceholder.typicode.com/users",
+    const response = await api.post(
+      "/usuarios",
       {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          name: nombre
-        })
+        nombre: nombre,
+        email: "correo@ejemplo.com",
+        edad: 18
       }
     );
 
-    const data = await response.json();
+    console.log(
+      "Usuario creado:",
+      response.data
+    );
 
-console.log("Usuario creado:", data);
+    setUsuarios([
+      ...usuarios,
+      response.data.usuario
+    ]);
 
-setUsuarios([
-  ...usuarios,
-  data
-]);
+    setNombre("");
 
-setNombre("");
   } catch (error) {
 
     console.error(
@@ -77,50 +85,81 @@ setNombre("");
 
 }
 
-function eliminarUsuario(id) {
+async function eliminarUsuario(id) {
 
-  const nuevosUsuarios = usuarios.filter(
-    function(usuario) {
+  try {
 
-      return usuario.id !== id;
+    const response = await api.delete(
+      `/usuarios/${id}`
+    );
 
-    }
-  );
+    console.log(
+      "Usuario eliminado:",
+      response.data
+    );
 
-  setUsuarios(nuevosUsuarios);
+    const nuevosUsuarios =
+      usuarios.filter(function(usuario) {
+
+        return usuario._id !== id;
+
+      });
+
+    setUsuarios(nuevosUsuarios);
+
+  } catch (error) {
+
+    console.error(
+      "Error al eliminar usuario:",
+      error
+    );
+
+  }
 
 }
 
 function iniciarEdicion(usuario) {
 
-  setEditandoId(usuario.id);
+  setEditandoId(usuario._id);
 
-  setNombreEditado(usuario.name);
+  setNombreEditado(usuario.nombre);
 
 }
 
-function guardarEdicion(id) {
+async function guardarEdicion(id) {
 
   if (nombreEditado.trim() === "") {
     return;
   }
 
+  const response = await api.put(
+  `/usuarios/${id}`,
+  {
+    nombre: nombreEditado
+  }
+);
+
+console.log(
+  "Usuario actualizado:",
+  response.data
+);
+
   const nuevosUsuarios = usuarios.map(
-    function(usuario) {
+  function(usuario) {
 
-      if (usuario.id === id) {
+    if (usuario._id === id) {
 
-        return {
-          ...usuario,
-          name: nombreEditado
-        };
-
-      }
-
-      return usuario;
+      return {
+        ...usuario,
+        nombre: nombreEditado
+      };
 
     }
-  );
+
+    return usuario;
+
+  }
+);
 
   setUsuarios(nuevosUsuarios);
 
@@ -130,8 +169,7 @@ function guardarEdicion(id) {
 
 }
 
-
-  return (
+return (
 
   <div>
 
@@ -156,56 +194,18 @@ function guardarEdicion(id) {
 
         return (
 
-          <li key={usuario.id}>
-            {editandoId === usuario.id ? (
+          <UsuarioItem
+  key={usuario._id}
+  usuario={usuario}
+  eliminarUsuario={eliminarUsuario}
+  iniciarEdicion={iniciarEdicion}
+  editandoId={editandoId}
+  nombreEditado={nombreEditado}
+  setNombreEditado={setNombreEditado}
+  guardarEdicion={guardarEdicion}
+/>
 
-  <input
-    value={nombreEditado}
-    onChange={(event) =>
-      setNombreEditado(event.target.value)
-    }
-  />
-
-) : (
-
-  usuario.name
-
-)}
-
-{editandoId === usuario.id ? (
-
-  <button
-    onClick={() =>
-      guardarEdicion(usuario.id)
-    }
-  >
-    Guardar
-  </button>
-
-) : (
-
-  <button
-    onClick={() =>
-      iniciarEdicion(usuario)
-    }
-  >
-    Editar
-  </button>
-
-)}
-
-
-<button
-  onClick={() =>
-    eliminarUsuario(usuario.id)
-          }
->
-  Eliminar
-</button>
-
-
-</li>
-
+          
         );
 
       })}
