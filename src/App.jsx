@@ -6,6 +6,7 @@ import Home from "./pages/Home";
 import Tareas from "./pages/Tareas";
 import { Link } from "react-router-dom";
 import Usuarios from "./pages/Usuarios";
+import Navbar from "./components/Navbar";
 
 function App() {
 
@@ -134,6 +135,8 @@ return (
 
   </nav>
 
+  <h1>PRUEBA</h1>
+
   <Routes>
 
   <Route
@@ -165,7 +168,7 @@ return (
 
   
 </div>
-  )
+  );
 }
 export default App
 

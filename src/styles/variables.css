@@ -1,0 +1,33 @@
+:root {
+
+  /* ===== COLORES PRINCIPALES ===== */
+
+  --color-primario: #2563EB;
+
+  --color-secundario: #1E293B;
+
+  --color-fondo: #F5F7FA;
+
+  --color-tarjeta: #FFFFFF;
+
+  --color-texto: #1F2937;
+
+  --color-borde: #D1D5DB;
+
+  /* ===== BOTONES ===== */
+
+  --color-editar: #16A34A;
+
+  --color-eliminar: #DC2626;
+
+  /* ===== SOMBRAS ===== */
+
+  --sombra-suave:
+
+      0px 4px 10px rgba(0,0,0,0.08);
+
+  /* ===== BORDES ===== */
+
+  --radio: 12px;
+
+}
