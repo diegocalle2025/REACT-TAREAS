@@ -116,28 +116,9 @@ return (
 
 <div>
 
-  <nav>
+  <Navbar />
 
-        <Link to="/">
-          Inicio
-        </Link>
-
-        {" | "}
-
-        <Link to="/tareas">
-            Tareas
-        </Link>
-
-        {" | "}
-        <Link to="/usuarios">
-            Usuarios
-        </Link>
-
-  </nav>
-
-  <h1>PRUEBA</h1>
-
-  <Routes>
+    <Routes>
 
   <Route
           path="/"

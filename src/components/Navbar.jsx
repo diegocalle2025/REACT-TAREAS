@@ -9,7 +9,7 @@ function Navbar() {
 
       <div className="logo">
 
-  🚀 ESTA ES MI NAVBAR 🚀
+  Task Manager
 
 </div>
 
