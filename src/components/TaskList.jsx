@@ -1,13 +1,15 @@
 import TaskItem from "./TaskItem";
+import "./TaskList.css";
 function TaskList(props) {
 
   return (
 
-    <ul>
+    <ul className="task-list">
 
       {props.tareas.map((tarea) => (
 
-        <TaskItem tarea={tarea}
+        <TaskItem key={tarea.id}
+        tarea={tarea}
         toggleTask={props.toggleTask}
         eliminarTarea={props.eliminarTarea}
         editarTarea={props.editarTarea}        

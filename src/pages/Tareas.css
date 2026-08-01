@@ -1,0 +1,85 @@
+.tareas-page{
+
+    max-width:900px;
+
+    margin:auto;
+
+    padding:40px;
+
+}
+
+.titulo{
+
+    text-align:center;
+
+    margin-bottom:40px;
+
+}
+
+.titulo h1{
+
+    color:#1E3A8A;
+
+    font-size:42px;
+
+    margin-bottom:10px;
+
+}
+
+.titulo p{
+
+    color:#666;
+
+    font-size:18px;
+
+}
+
+.formulario{
+
+    display:flex;
+
+    gap:15px;
+
+    margin-bottom:40px;
+
+}
+
+.formulario input{
+
+    flex:1;
+
+    padding:15px;
+
+    border-radius:12px;
+
+    border:1px solid #DDD;
+
+    font-size:16px;
+
+}
+
+.formulario button{
+
+    background:#2563EB;
+
+    color:white;
+
+    border:none;
+
+    padding:15px 30px;
+
+    border-radius:12px;
+
+    cursor:pointer;
+
+    font-weight:bold;
+
+    transition:.3s;
+
+}
+
+.formulario button:hover{
+
+    background:#1D4ED8;
+
+}

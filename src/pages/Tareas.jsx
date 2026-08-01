@@ -1,43 +1,60 @@
 import TaskList from "../components/TaskList";
+import "./Tareas.css";
 function Tareas(props) {
 
   return (
 
-  <div>
+<div className="tareas-page">
 
-    <h1>Página de Tareas</h1>
+    <div className="titulo">
 
-    <p>
-      Número de tareas: {props.tareas.length}
-    </p>
+        <h1>Mis Tareas</h1>
 
-    <p>
-      Texto actual: {props.nuevaTarea}
-    </p>
+        <p>
 
-    <input
-      type="text"
-      placeholder="Escribe una tarea"
-      value={props.nuevaTarea}
-      onChange={(event) =>
-      props.setNuevaTarea(event.target.value)
-      }
+            Organiza tu trabajo de forma sencilla.
+
+        </p>
+
+    </div>
+
+    <div className="formulario">
+
+        <input
+
+            type="text"
+
+            placeholder="Escribe una tarea"
+
+            value={props.nuevaTarea}
+
+            onChange={(event) =>
+                props.setNuevaTarea(event.target.value)
+            }
+
+        />
+
+        <button onClick={props.agregarTarea}>
+
+            Agregar
+
+        </button>
+
+    </div>
+
+    <TaskList
+
+        tareas={props.tareas}
+
+        toggleTask={props.toggleTask}
+
+        eliminarTarea={props.eliminarTarea}
+
+        editarTarea={props.editarTarea}
+
     />
 
-<button
-  onClick={props.agregarTarea}
->
-  Agregar
-</button>
-
-<TaskList
-  tareas={props.tareas}
-  toggleTask={props.toggleTask}
-  eliminarTarea={props.eliminarTarea}
-  editarTarea={props.editarTarea}
-/>
-
-  </div>
+</div>
 
 );
 

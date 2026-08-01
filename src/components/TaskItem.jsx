@@ -1,4 +1,5 @@
 import { useState } from "react";
+import "./TaskItem.css";
 function TaskItem(props) {
 
   const [editando, setEditando] =
@@ -11,64 +12,111 @@ function TaskItem(props) {
 
   return (
 
-  <li onClick={() =>
-    props.toggleTask(props.tarea.id)
-  }>
-
-    {props.tarea.completed ? "✓ " : "• "}
-    {editando ? (
-
-  <input
-    type="text"
-    value={textoEditado}
-    onChange={(event) =>
-      setTextoEditado(event.target.value)
-    }
-    onClick={(event) =>
-  event.stopPropagation()
-}
-  />
-
-) : (
-
-  props.tarea.text
-
-)}
-    <button
-      onClick={(event) => {
-
-      event.stopPropagation();
-
-        props.eliminarTarea(
-      props.tarea.id
-    );
-
-  }}
+<div
+    className="task-card"
+    onClick={() => props.toggleTask(props.tarea.id)}
 >
-  Eliminar
-</button>
 
-<button
-  onClick={(event) => {
+    <div className="task-header">
 
-    event.stopPropagation();
-    if (editando) {
+        <h3>
 
-    props.editarTarea(
-      props.tarea.id,
-      textoEditado
-    );
+            {props.tarea.completed ? "✅" : "📄"}
 
-  }
+            {" "}
 
-    setEditando(!editando);
+            {editando ? (
 
-  }}
->
-  {editando ? "Guardar" : "Editar"}
-</button>
+                <input
 
-  </li>
+                    type="text"
+
+                    value={textoEditado}
+
+                    onChange={(event) =>
+                        setTextoEditado(event.target.value)
+                    }
+
+                    onClick={(event) =>
+                        event.stopPropagation()
+                    }
+
+                />
+
+            ) : (
+
+                props.tarea.text
+
+            )}
+
+        </h3>
+
+        <span
+            className={
+                props.tarea.completed
+                    ? "estado completada"
+                    : "estado pendiente"
+            }
+        >
+
+            {props.tarea.completed
+                ? "Completada"
+                : "Pendiente"}
+
+        </span>
+
+    </div>
+
+    <div className="task-buttons">
+
+        <button
+
+            className="editar"
+
+            onClick={(event) => {
+
+                event.stopPropagation();
+
+                if (editando) {
+
+                    props.editarTarea(
+                        props.tarea.id,
+                        textoEditado
+                    );
+
+                }
+
+                setEditando(!editando);
+
+            }}
+
+        >
+
+            {editando ? "Guardar" : "Editar"}
+
+        </button>
+
+        <button
+
+            className="eliminar"
+
+            onClick={(event) => {
+
+                event.stopPropagation();
+
+                props.eliminarTarea(props.tarea.id);
+
+            }}
+
+        >
+
+            Eliminar
+
+        </button>
+
+    </div>
+
+</div>
 
 );
 
