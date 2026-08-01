@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import api from "../services/api";
 import UsuarioItem from "../components/UsuarioItem";
+import "./Usuarios.css";
 
 
 
@@ -171,48 +172,78 @@ console.log(
 
 return (
 
-  <div>
+<div className="usuarios-page">
 
-    <h1>Usuarios API</h1>
+    <div className="usuarios-header">
 
-<input
-  type="text"
-  placeholder="Nombre del usuario"
-  value={nombre}
-  onChange={(event) =>
-    setNombre(event.target.value)
-  }
-/>
+        <h1>Usuarios</h1>
 
-<button onClick={crearUsuario}>
-  Crear Usuario
-</button>
+        <p>
 
-    <ul>
+            Administra los usuarios registrados
+            en la aplicación.
 
-      {usuarios.map(function(usuario) {
+        </p>
 
-        return (
+    </div>
 
-          <UsuarioItem
-  key={usuario._id}
-  usuario={usuario}
-  eliminarUsuario={eliminarUsuario}
-  iniciarEdicion={iniciarEdicion}
-  editandoId={editandoId}
-  nombreEditado={nombreEditado}
-  setNombreEditado={setNombreEditado}
-  guardarEdicion={guardarEdicion}
-/>
+    <div className="usuarios-form">
 
-          
-        );
+        <input
 
-      })}
+            type="text"
+
+            placeholder="Nombre del usuario"
+
+            value={nombre}
+
+            onChange={(event) =>
+                setNombre(event.target.value)
+            }
+
+        />
+
+        <button onClick={crearUsuario}>
+
+            Crear Usuario
+
+        </button>
+
+    </div>
+
+    <ul className="usuarios-lista">
+
+        {usuarios.map(function(usuario){
+
+            return(
+
+                <UsuarioItem
+
+                    key={usuario._id}
+
+                    usuario={usuario}
+
+                    eliminarUsuario={eliminarUsuario}
+
+                    iniciarEdicion={iniciarEdicion}
+
+                    editandoId={editandoId}
+
+                    nombreEditado={nombreEditado}
+
+                    setNombreEditado={setNombreEditado}
+
+                    guardarEdicion={guardarEdicion}
+
+                />
+
+            );
+
+        })}
 
     </ul>
 
-  </div>
+</div>
 
 );
 

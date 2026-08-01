@@ -90,6 +90,18 @@ function editarTarea(id, nuevoTexto) {
   );
   }, [tareas]);
 
+  const [busqueda, setBusqueda] = useState("");
+
+  const tareasFiltradas = tareas.filter(function(tarea) {
+
+  return tarea.text
+    .toLowerCase()
+    .includes(
+      busqueda.toLowerCase()
+    );
+
+});
+
   
 function agregarTarea() {     
 
@@ -129,13 +141,15 @@ return (
           path="/tareas"
             element={
   <Tareas
-  tareas={tareas}
+  tareas={tareasFiltradas}
   nuevaTarea={nuevaTarea}
   setNuevaTarea={setNuevaTarea}
   agregarTarea={agregarTarea}
   toggleTask={toggleTask}
   eliminarTarea={eliminarTarea}
   editarTarea={editarTarea}
+  busqueda={busqueda}
+  setBusqueda={setBusqueda}
 />
   }
   />

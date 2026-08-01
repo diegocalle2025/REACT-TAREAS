@@ -1,4 +1,4 @@
-.tareas-page{
+.usuarios-page{
 
     max-width:900px;
 
@@ -8,7 +8,7 @@
 
 }
 
-.titulo{
+.usuarios-header{
 
     text-align:center;
 
@@ -16,7 +16,7 @@
 
 }
 
-.titulo h1{
+.usuarios-header h1{
 
     color:#1E3A8A;
 
@@ -26,7 +26,7 @@
 
 }
 
-.titulo p{
+.usuarios-header p{
 
     color:#666;
 
@@ -34,7 +34,7 @@
 
 }
 
-.formulario{
+.usuarios-form{
 
     display:flex;
 
@@ -44,7 +44,7 @@
 
 }
 
-.formulario input{
+.usuarios-form input{
 
     flex:1;
 
@@ -58,9 +58,9 @@
 
 }
 
-.formulario button{
+.usuarios-form button{
 
-    background:#2563EB;
+    background:#16A34A;
 
     color:white;
 
@@ -78,28 +78,18 @@
 
 }
 
-.formulario button:hover{
+.usuarios-form button:hover{
 
-    background:#1D4ED8;
-
-}
-
-.buscador{
-
-    margin-bottom:25px;
+    background:#15803D;
 
 }
 
-.buscador input{
+.usuarios-lista{
 
-    width:100%;
+    list-style:none;
 
-    padding:15px;
+    padding:0;
 
-    border-radius:12px;
-
-    border:1px solid #DDD;
-
-    font-size:16px;
+    margin:0;
 
 }

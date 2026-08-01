@@ -6,18 +6,37 @@ function TaskList(props) {
 
     <ul className="task-list">
 
-      {props.tareas.map((tarea) => (
+  {props.tareas.length === 0 ? (
 
-        <TaskItem key={tarea.id}
+    <p className="mensaje-vacio">
+
+      🔍 No se encontraron tareas.
+
+    </p>
+
+  ) : (
+
+    props.tareas.map((tarea) => (
+
+      <TaskItem
+
+        key={tarea.id}
+
         tarea={tarea}
+
         toggleTask={props.toggleTask}
+
         eliminarTarea={props.eliminarTarea}
-        editarTarea={props.editarTarea}        
-        />
 
-      ))}
+        editarTarea={props.editarTarea}
 
-    </ul>
+      />
+
+    ))
+
+  )}
+
+</ul>
 
   );
 

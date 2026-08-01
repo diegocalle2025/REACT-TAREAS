@@ -18,6 +18,26 @@ function Tareas(props) {
 
     </div>
 
+    <div className="buscador">
+
+    <input
+
+        type="text"
+
+        placeholder="🔍 Buscar tarea..."
+
+        value={props.busqueda}
+
+        onChange={(event)=>
+
+            props.setBusqueda(event.target.value)
+
+        }
+
+    />
+
+</div>
+
     <div className="formulario">
 
         <input
